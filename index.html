@@ -18,9 +18,26 @@
         </div>
     </div>
 
-    <ul class="suggestions">
-        
+    <ul class="suggestions">       
     </ul>
+
+    <div class="city-div">
+        <img class="building-logo" src="images/building.svg">
+        <h2 class="city-label">City:</h2><span class="city-value">New York</span>
+        <h2 class="state-label">State:</h2><span class="state-value">New York</span>
+    </div>
+
+    <div class="people-div">
+        <img class="people-logo" src="images/group-of-people.svg">
+        <h2 class="people-label">Population:</h2><span class="population-value">1,000,000</span>
+    </div>
+    
+    <div class="world-div">
+        <img class="world-logo" src="images/longitude-latitude.svg">
+        <h2 class="latitude-label">Latitude:</h2><span class="latitude-value">15.00.35</span>
+        <h2 class="longitude-label">Longitude:</h2><span class="longitude-value">15.00.65</span>
+    </div>
+        
 </body>
 
 <style>
@@ -84,6 +101,10 @@
         align-items: center;
     }
 
+    .icon-box :hover {
+        cursor: pointer;
+    }
+
     .search-icon {
         grid-column: 3;
         padding-left: 5px;
@@ -102,6 +123,7 @@
         list-style: none;
         width: 275px;
         transform: translate(18.5px, -23px);
+        z-index: 10;
     }
 
     .suggestions>li {
@@ -131,6 +153,79 @@
         background-color: rgb(216, 14, 81);
     }
 
+    .city-div {
+        position: absolute;
+        top: 250px;
+        left: 80px;
+    }
+
+    .building-logo {
+        height: 75px;
+        width: 75px;
+        grid-row-start: 2;
+    }
+
+    .people-div {
+        position: absolute;
+        top: 375px;
+        left: 80px;
+    }
+
+    .people-logo {
+        height: 75px;
+        width: 75px;
+        grid-row-start: 2;
+    }
+
+    .world-div {
+        position: absolute;
+        top: 500px;
+        left: 80px;
+    }
+
+    .world-logo {
+        height: 65px;
+        width: 65px;
+        grid-row-start: 2;
+    }
+
+    .city-div, .people-div, .world-div {
+        display: grid;
+        height: 100px;
+        width: 60%;
+        grid-template-columns: repeat(20, 25px);
+        grid-template-rows: 12.5px repeat(3, 25px) 12.5px;
+    }
+
+    .city-label {
+        font-size: 18px;
+        grid-column-start: 5;
+        grid-row-start: 1; 
+    }
+
+    .state-label {
+        font-size: 18px;
+        grid-column-start: 5;
+        grid-row-end: -3; 
+    }
+
+    .people-label {
+        font-size: 18px;
+        grid-column-start: 5;
+        grid-row-end: 3; 
+    }
+
+    .latitude-label {
+        font-size: 18px;
+        grid-column-start: 5;
+        grid-row-start: 1;
+    }
+
+    .longitude-label {
+        font-size: 18px;
+        grid-column-start: 5;
+        grid-row-end: -3; 
+    }
 </style>
 
 <script>
