@@ -21,23 +21,26 @@
     <ul class="suggestions">       
     </ul>
 
-    <div class="city-div">
-        <img class="building-logo" src="images/building.svg">
+        
         <h2 class="city-label">City:</h2><span class="city-value">New York</span>
         <h2 class="state-label">State:</h2><span class="state-value">New York</span>
-    </div>
-
-    <div class="people-div">
-        <img class="people-logo" src="images/group-of-people.svg">
-        <h2 class="people-label">Population:</h2><span class="population-value">1,000,000</span>
-    </div>
     
-    <div class="world-div">
-        <img class="world-logo" src="images/longitude-latitude.svg">
+        
+        <h2 class="people-label">Population:</h2><span class="population-value">1,000,000</span>
+    
+        
         <h2 class="latitude-label">Latitude:</h2><span class="latitude-value">15.00.35</span>
         <h2 class="longitude-label">Longitude:</h2><span class="longitude-value">15.00.65</span>
-    </div>
-        
+
+        <div class="circle">
+            <img class="building-logo" src="images/building.svg">
+            <img class="people-logo" src="images/group-of-people.svg">
+            <img class="world-logo" src="images/longitude-latitude.svg">
+            <div class="sector sector1"></div>
+            <div class="sector sector2"></div>
+            <div class="sector sector3"></div>
+        </div>
+                
 </body>
 
 <style>
@@ -153,79 +156,84 @@
         background-color: rgb(216, 14, 81);
     }
 
-    .city-div {
-        position: absolute;
-        top: 250px;
-        left: 80px;
-    }
-
     .building-logo {
         height: 75px;
         width: 75px;
-        grid-row-start: 2;
-    }
-
-    .people-div {
         position: absolute;
-        top: 375px;
-        left: 80px;
+        top: 100px;
+        left: 200px;
     }
 
     .people-logo {
         height: 75px;
         width: 75px;
-        grid-row-start: 2;
-    }
-
-    .world-div {
         position: absolute;
-        top: 500px;
-        left: 80px;
+        top: 35px;
+        left: 65px;
     }
 
     .world-logo {
         height: 65px;
         width: 65px;
-        grid-row-start: 2;
-    }
-
-    .city-div, .people-div, .world-div {
-        display: grid;
-        height: 100px;
-        width: 60%;
-        grid-template-columns: repeat(20, 25px);
-        grid-template-rows: 12.5px repeat(3, 25px) 12.5px;
+        position: absolute;
+        top: 185px;
+        left: 78px;
     }
 
     .city-label {
         font-size: 18px;
-        grid-column-start: 5;
-        grid-row-start: 1; 
     }
 
     .state-label {
         font-size: 18px;
-        grid-column-start: 5;
-        grid-row-end: -3; 
     }
 
     .people-label {
         font-size: 18px;
-        grid-column-start: 5;
-        grid-row-end: 3; 
     }
 
     .latitude-label {
         font-size: 18px;
-        grid-column-start: 5;
-        grid-row-start: 1;
     }
 
     .longitude-label {
         font-size: 18px;
-        grid-column-start: 5;
-        grid-row-end: -3; 
     }
+
+    .circle {
+        position: absolute;
+        top: 300px;
+        left: 100px;
+        height: 300px;
+        width: 300px;
+        border: 1px solid black;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .sector {
+        position: absolute;
+        top: 0px;
+        left: 150px;
+        height: 150px;
+        width: 20px;
+        transform-origin: left bottom;
+        border: 2px solid transparent;
+        border-left-color: black;
+    }
+
+    .sector1 {
+        transform: rotate(30deg);
+    }
+
+    .sector2 {
+        transform: rotate(150deg);
+    }
+
+    .sector3 {
+        transform: rotate(-90deg);
+    }
+
 </style>
 
 <script>
