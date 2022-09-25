@@ -112,6 +112,10 @@
         width: 100%;
     }
 
+    .suggestions>li:hover {
+        cursor:pointer;
+    }
+
     .suggestions :last-child {
         border-bottom: none;
     }
@@ -150,13 +154,16 @@
         })
         
         if (filteredCities.length > 0 && string.length > 0) { 
+            
             suggestions.style.visibility = "visible";
             filteredCities.map(element => {
                 
                 let listElement = document.createElement('li');
                 const listString = `${element.city}, ${element.state}`
+                const population = element.population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                 const highlightString = listString.replace(regex,(str) => `<span class="highlight">${str}</span>`)
-                listElement.innerHTML = `${highlightString}<span class="population">${element.population}</span>`;
+                listElement.innerHTML = `${highlightString}<span class="population">${population}</span>`;
+                listElement.classList.add('city')
                 suggestions.append(listElement);
             })
         }
@@ -166,8 +173,24 @@
 
     }
 
+    function selectListItem(event) {
+        suggestions.style.visibility = "hidden";
+        
+        if (event.target.parentElement != this) {
+            const textString = event.target.parentElement.textContent;
+            const cityStateString = textString.replace(/[0-9]|,(?=[0-9])/g, ''); 
+            textBox.value = cityStateString;
+        }
+        else {
+            const textString = event.target.textContent;
+            const cityStateString = textString.replace(/[0-9]|,(?=[0-9])/g, ''); 
+            textBox.value = cityStateString;
+        }    
+    }
+
     textBox.addEventListener('keydown', updateList);
     textBox.addEventListener('keyup', updateList);
+    suggestions.addEventListener('mousedown', selectListItem);
      
 </script>
 
