@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Development Tools</title>
+</head>
+
+<body>
+    <h1 class="title">Search Census Data</h1>
+    <div class="search">
+        <h4 class="search-label">Search:</h4>
+        <input type="text" class="searchbox" placeholder="Enter a City or State" />
+        <div class="icon-box">
+            <img class="search-icon" src="images/search.svg" height="30px" width="30px">
+        </div>
+    </div>
+
+    <ul class="suggestions">
+        
+    </ul>
+</body>
+
+<style>
+    html {
+        height: 100%;
+        font-family: Laksaman, serif;
+    }
+
+    body {
+        height: 100%;
+        background-color: #dcc7aa;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title {
+        color: #496386;
+        font-size: 40px;
+        margin-top: 20px;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        border-bottom: 2px solid #496386;
+    }
+
+    .search {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        align-items: center;
+    }
+
+    .search-label {
+        font-size: 20px;
+        color: #496386;
+        grid-column: 1;
+        padding-right: 10px;
+    }
+
+    .searchbox {
+        font-family: "Laksaman";
+        display: inline;
+        padding-left: 20px;
+        font-size: 16px;
+        background-color: rgb(236, 246, 252);
+        height: 40px;
+        width: 300px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin-bottom: 0px;
+        grid-column: 2;
+    }
+
+    .icon-box {
+        background-color: #496386;
+        height: 40px;
+        border-radius: 10px;
+        border: 1px solid black;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-icon {
+        grid-column: 3;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: #496386;
+        border-radius: 10px;
+    }
+
+    .suggestions {
+        visibility: hidden;
+        padding-top: 0px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: rgb(236, 246, 252);
+        margin-top: 0px;
+        list-style: none;
+        width: 275px;
+        transform: translate(18.5px, -23px);
+    }
+
+    .suggestions>li {
+        transform: translateX(-35px);
+        font-size: 16px;
+        padding: 10px;
+        border-bottom: 4px solid rgb(185, 182, 182);
+        width: 100%;
+    }
+
+    .suggestions :last-child {
+        border-bottom: none;
+    }
+
+    .population {
+        float: right;
+        font-size: 14px;
+        transform: translateY(4px);
+    }
+
+    .highlight {
+        color: white;
+        background-color: rgb(216, 14, 81);
+    }
+
+</style>
+
+<script>
+
+    const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+    const textBox = document.body.querySelector('.searchbox');
+    const suggestions = document.body.querySelector('.suggestions')
+
+    const cities = [];
+
+    fetch(endpoint)
+        .then((response) => response.json())
+        .then((data) => cities.push(...data));
+
+    function updateList() {
+        suggestions.innerHTML = "";
+        const string = this.value;
+        const regex = new RegExp(string, 'ig');
+        const filteredCities = cities.filter(element => {
+           return regex.test(element.city) || regex.test(element.state); 
+        })
+        
+        if (filteredCities.length > 0 && string.length > 0) { 
+            suggestions.style.visibility = "visible";
+            filteredCities.map(element => {
+                
+                let listElement = document.createElement('li');
+                const listString = `${element.city}, ${element.state}`
+                const highlightString = listString.replace(regex,(str) => `<span class="highlight">${str}</span>`)
+                listElement.innerHTML = `${highlightString}<span class="population">${element.population}</span>`;
+                suggestions.append(listElement);
+            })
+        }
+        else {
+            suggestions.style.visibility = "hidden";
+        }
+
+    }
+
+    textBox.addEventListener('keydown', updateList);
+    textBox.addEventListener('keyup', updateList);
+     
+</script>
+
+</html>
