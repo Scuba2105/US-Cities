@@ -22,22 +22,42 @@
     </ul>
 
         
-        <h2 class="city-label">City:</h2><span class="city-value">New York</span>
-        <h2 class="state-label">State:</h2><span class="state-value">New York</span>
-    
-        
-        <h2 class="people-label">Population:</h2><span class="population-value">1,000,000</span>
-    
-        
-        <h2 class="latitude-label">Latitude:</h2><span class="latitude-value">15.00.35</span>
-        <h2 class="longitude-label">Longitude:</h2><span class="longitude-value">15.00.65</span>
+        <div class="city-container">
+            <h2 class="city-label">City:</h2><span class="city-value">New York</span>
+        </div>
 
+        <div class="state-container">
+            <h2 class="state-label">State:</h2><span class="state-value">New York</span>
+        </div>
+        
+        <div class="population-container">
+            <h2 class="people-label">Population:</h2><span class="population-value">1,000,000</span>
+        </div>
+        
+        <div class="latitude-container">
+            <h2 class="latitude-label">Latitude:</h2><span class="latitude-value">45.00.35</span>
+        </div>
+        
+        <div class="longitude-container">
+            <h2 class="longitude-label">Longitude:</h2><span class="longitude-value">15.00.65</span>
+        </div>
+        
         <div class="circle">
+            
             <img class="building-logo" src="images/building.svg">
             <img class="people-logo" src="images/group-of-people.svg">
             <img class="world-logo" src="images/longitude-latitude.svg">
+            
+            <div class="fill fill1"></div>
+            <div class="fill fill2"></div>
             <div class="sector sector1"></div>
+            
+            <div class="fill fill3"></div>
+            <div class="fill fill4"></div>
             <div class="sector sector2"></div>
+            
+            <div class="fill fill5"></div>
+            <div class="fill fill6"></div>
             <div class="sector sector3"></div>
         </div>
                 
@@ -51,7 +71,7 @@
 
     body {
         height: 100%;
-        background-color: #dcc7aa;
+        background-color: #d0e2f3;
         background-repeat: no-repeat;
         display: flex;
         flex-direction: column;
@@ -59,13 +79,13 @@
     }
 
     .title {
-        color: #496386;
+        color: #151729;
         font-size: 40px;
         margin-top: 20px;
         width: 80%;
         display: flex;
         justify-content: center;
-        border-bottom: 2px solid #496386;
+        border-bottom: 2px solid #151729;
     }
 
     .search {
@@ -76,7 +96,7 @@
 
     .search-label {
         font-size: 20px;
-        color: #496386;
+        color: #151729;
         grid-column: 1;
         padding-right: 10px;
     }
@@ -89,17 +109,17 @@
         background-color: rgb(236, 246, 252);
         height: 40px;
         width: 300px;
-        border: 1px solid black;
+        border: 1px solid #151729;
         border-radius: 10px;
         margin-bottom: 0px;
         grid-column: 2;
     }
 
     .icon-box {
-        background-color: #496386;
+        background-color: #5E7CE2;
         height: 40px;
         border-radius: 10px;
-        border: 1px solid black;
+        border: 1px solid #151729;
         display: flex;
         align-items: center;
     }
@@ -112,21 +132,21 @@
         grid-column: 3;
         padding-left: 5px;
         padding-right: 5px;
-        background-color: #496386;
+        background-color: #5E7CE2;
         border-radius: 10px;
     }
 
     .suggestions {
         visibility: hidden;
         padding-top: 0px;
-        border: 1px solid black;
+        border: 1px solid #151729;
         border-radius: 5px;
         background-color: rgb(236, 246, 252);
         margin-top: 0px;
         list-style: none;
         width: 275px;
         transform: translate(18.5px, -23px);
-        z-index: 10;
+        z-index: 20;
     }
 
     .suggestions>li {
@@ -155,13 +175,14 @@
         color: white;
         background-color: rgb(216, 14, 81);
     }
-
+   
     .building-logo {
         height: 75px;
         width: 75px;
         position: absolute;
         top: 100px;
         left: 200px;
+        z-index: 10;
     }
 
     .people-logo {
@@ -170,6 +191,7 @@
         position: absolute;
         top: 35px;
         left: 65px;
+        z-index: 10;
     }
 
     .world-logo {
@@ -178,26 +200,107 @@
         position: absolute;
         top: 185px;
         left: 78px;
+        z-index: 10;
+    }
+
+    .city-container {
+        position: absolute;
+        left: 450px;
+        top: 350px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .state-container {
+        position: absolute;
+        left: 450px;
+        top: 425px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .latitude-container {
+        position: absolute;
+        left: 450px;
+        top: 350px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .longitude-container {
+        position: absolute;
+        left: 450px;
+        top: 425px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .population-container {
+        position: absolute;
+        left: 450px;
+        top: calc(425px - 37.5px);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .city-value {
+        visibility: hidden;
+        font-size: 30px;
+        padding-left: 20px; 
+    }
+
+    .state-value {
+        visibility: hidden;
+        font-size: 30px;
+        padding-left: 20px;
+    }
+
+    .longitude-value {
+        visibility: hidden;
+        font-size: 30px;
+        padding-left: 20px;
+    }
+
+    .latitude-value {
+        visibility: hidden;
+        font-size: 30px;
+        padding-left: 20px;
+    }
+
+    .population-value {
+        /*visibility: hidden;*/
+        font-size: 30px;
+        padding-left: 20px;
     }
 
     .city-label {
-        font-size: 18px;
+        visibility: hidden;
+        font-size: 30px;
     }
 
     .state-label {
-        font-size: 18px;
+        visibility: hidden;
+        font-size: 30px;
     }
 
     .people-label {
-        font-size: 18px;
+        font-size: 30px;
+        /*visibility: hidden;*/
     }
 
     .latitude-label {
-        font-size: 18px;
+        font-size: 30px;
+        visibility: hidden
     }
 
     .longitude-label {
-        font-size: 18px;
+        font-size: 30px;
+        visibility: hidden;
     }
 
     .circle {
@@ -206,7 +309,7 @@
         left: 100px;
         height: 300px;
         width: 300px;
-        border: 1px solid black;
+        border: 2px solid #151729;
         border-radius: 50%;
         overflow: hidden;
     }
@@ -218,8 +321,47 @@
         height: 150px;
         width: 20px;
         transform-origin: left bottom;
-        border: 2px solid transparent;
-        border-left-color: black;
+        border-color: transparent;
+        border-left: 2px solid #151729;
+    }
+
+    .fill {
+        position: absolute;
+        top: 0px;
+        left: 150px;
+        height: 150px;
+        width: 150px;
+        transform-origin: left bottom;
+    }
+
+    .fill1 {
+        transform: rotate(30deg);
+        background-color: #6884e2;
+    }
+
+    .fill2 {
+        transform: rotate(60deg);
+        background-color: #6884e2;
+    }
+
+    .fill3 {
+        transform: rotate(150deg);
+        background-color: #59FFA0;
+    }
+
+    .fill4 {
+        transform: rotate(180deg);
+        background-color: #59FFA0;
+    }
+
+    .fill5 {
+        transform: rotate(-90deg);
+        background-color: #f07d90;
+    }
+
+    .fill6 {
+        transform: rotate(-60deg);
+        background-color: #f07d90;
     }
 
     .sector1 {
